@@ -6,7 +6,7 @@
 
 # db files
 *.db
-db_repository*/
+db_repository*/versions/
 
 # log files
 *.log
