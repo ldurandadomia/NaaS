@@ -1,3 +1,6 @@
+# Virtual Env directory
+/flask/
+
 # db files
 *.db
 
