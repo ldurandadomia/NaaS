@@ -6,6 +6,7 @@
 
 # db files
 *.db
+db_repository*/
 
 # log files
 *.log

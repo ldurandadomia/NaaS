@@ -1,0 +1,8 @@
+flask
+flask_restful
+flask_restplus
+flask_sqlalchemy
+migrate
+netmiko
+ansible
+requests
