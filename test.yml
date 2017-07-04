@@ -1,5 +1,5 @@
 ---
-- name: Hello Ansible - quick start
+- name: Hello Ansible - quick start (test)
 
   hosts: localhost
 
