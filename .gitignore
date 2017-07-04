@@ -1,3 +1,6 @@
+# Manual nosetests
+.idea/
+
 # Virtual Env directory
 /flask/
 
