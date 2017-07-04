@@ -1,9 +1,6 @@
 # Virtual Env directory
 /flask/
 
-# IDE local files 
-.idea/
-
 # db files
 *.db
 
@@ -109,3 +106,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# IDE local files 
+.idea/
