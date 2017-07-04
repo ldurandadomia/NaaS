@@ -20,5 +20,4 @@ from restapp.view_errorhandler_v3 import MyApi
 api = MyApi(app)
 
 # Other sub-modules import 
-from <module> import <sub-module> 
-...
+# from <module> import <sub-module>
