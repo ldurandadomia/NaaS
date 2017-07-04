@@ -1,8 +1,8 @@
-# Manual nosetests
-/.idea/
-
 # Virtual Env directory
 /flask/
+
+# IDE local files 
+.idea/
 
 # db files
 *.db
