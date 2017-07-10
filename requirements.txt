@@ -2,7 +2,10 @@ flask
 flask_restful
 flask_restplus
 flask_sqlalchemy
-migrate
+flask-script
+flask_migrate
 netmiko
 ansible
 requests
+unittest2
+coverage
