@@ -7,6 +7,8 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from config import SQLALCHEMY_DATABASE_URI
+from config import SQLALCHEMY_TRACK_MODIFICATIONS
+
 
 COV = coverage.coverage(
     branch=True,
@@ -21,6 +23,7 @@ COV.start()
 from restapp import app, db
 from restapp.models import Switches
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
 
 
 migrate = Migrate(app, db)
