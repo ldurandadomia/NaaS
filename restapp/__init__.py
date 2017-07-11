@@ -2,12 +2,23 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_restplus import Api
 
+
+def create_app(config_name):
+    app = Flask(__name__)
+
+    # Provide configuration parameters
+    app.config.from_object(config_name)
+
+    # Register the blueprints
+
+    # Add the before request handler
+    # app.before_request(create_before_request(app))
+    return app
+
+
 # Declaration de l'application Flask
-app = Flask(__name__)
 
-# Declaration du modele de donnees
-app.config.from_object('config')
-
+app = create_app('config')
 db = SQLAlchemy(app)
 
 from restapp import models

@@ -4,6 +4,8 @@ from sqlalchemy.orm import synonym
 
 class Switches(db.Model):
     """attributs d'un switch de l'infrastructure"""
+    __tablename_ = 'Switches'
+    __table_args__ = (db.UniqueConstraint('Name', 'ManagementIP', name='switch_unicity'),)
     Id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(64), index=True, unique=False)
     ManagementIP = db.Column(db.String(20), index=True, unique=False)
