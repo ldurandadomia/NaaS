@@ -6,7 +6,7 @@ SQL Alchemy ORM is used to manage Database access.
 
 ## Code Examples
 
-1.No example for the moment:
+1. No example for the moment:
 ```python
 todo  
 ```
