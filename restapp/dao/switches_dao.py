@@ -1,40 +1,22 @@
-import models
-from restapp.exceptions import IntegrityConstraintViolation, MissingAttribute, BadAttribute, NotFound
+__author__ = 'Laurent DURAND'
 
-class Dao(object):
-    """Parent class for Data Access Model"""
-    def __init__(self):
-        pass
-
-    def create(self, data):
-        """data: attributes dictionary"""
-        pass
-
-    def list(self):
-        pass
-
-    def read(self, uuid):
-        pass
-
-    def update(self, uuid):
-        pass
-
-    def delete(self, uuid):
-        pass
+from dao import Dao
+from database import models
+from restapp.exceptions.exceptions import IntegrityConstraintViolation, MissingAttribute, BadAttribute, NotFound
 
 
 class SwitchesDao(Dao):
     """Data Access Model for Switches"""
     def __init__(self, database):
         """ SwitchesDao constructor
-        attributes : db = database used by Dao
-        """
-        super(SwitchesDao, self).__init__()
-        self.db = database
+        parameters : database = database to be used by Dao
+        attributes : db = database used by Dao"""
+        super(SwitchesDao, self).__init__(database)
 
 
     def create(self, data):
-        """Create a switch into database using data attributes provided"""
+        """Create a switch into database using data attributes provided
+        parameters : data = switch attributes"""
         try:
             sw_name = data["Name"]
             sw_mgnt_ip = data["ManagementIP"]
@@ -55,7 +37,8 @@ class SwitchesDao(Dao):
 
 
     def list(self, Filters=None):
-        """ List All Switches Elements in Database"""
+        """ List All Switches Elements in Database
+        parameters : Filters = optional attributes values used as a filter for the query"""
         if Filters == None:
             allSwitches = models.Switches.query.all()
         else:

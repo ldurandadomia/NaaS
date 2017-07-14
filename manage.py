@@ -1,10 +1,12 @@
-# Manage RESTAPP application
+author__ = "Laurent DURAND"
+
+# Manage application command line scripts
 import unittest2 as unittest
 import coverage
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from restapp import app, db
-from restapp.models import Switches
+from restapp.app import app, db
+from database.models import Switches
 
 COV = coverage.coverage(
     branch=True,

@@ -1,3 +1,5 @@
+author__ = "Laurent DURAND"
+
 from <module> import app
 from flask import request
 from flask import Response

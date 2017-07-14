@@ -1,3 +1,5 @@
+author__ = "Laurent DURAND"
+
 from flask import jsonify
 from flask import abort
 from ansible.vars import VariableManager

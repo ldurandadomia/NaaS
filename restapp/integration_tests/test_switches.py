@@ -1,3 +1,5 @@
+author__ = "Laurent DURAND"
+
 import unittest2
 import requests
 import json

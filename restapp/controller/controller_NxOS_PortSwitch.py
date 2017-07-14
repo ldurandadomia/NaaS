@@ -1,3 +1,5 @@
+author__ = "Laurent DURAND"
+
 from restapp.controller_NetworkManager import NetworkManager
 from netmiko import ConnectHandler
 

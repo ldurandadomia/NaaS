@@ -1,3 +1,5 @@
+author__ = "Laurent DURAND"
+
 from flask import jsonify
 from ansible.vars import VariableManager
 from ansible.inventory import Inventory

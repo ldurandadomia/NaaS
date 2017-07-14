@@ -1,3 +1,4 @@
+author__ = "Laurent DURAND"
 
 class NetworkManager(object):
     """ NetworkManager:

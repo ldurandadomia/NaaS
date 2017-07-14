@@ -1,3 +1,5 @@
+__author__ = "Laurent DURAND"
+
 from __future__ import absolute_import
 from flask_testing import TestCase
 import unittest2 as unittest
@@ -59,7 +61,7 @@ class TestSwitches(TestCase):
 
 
     def test_switches_create_REST_db(self):
-        '''Test if a given switch can be created with REST and retreived in the Database'''
+        '''Test if a given switch can be created with REST and retrieved in the Database'''
         headers = [('Content-Type', 'application/json')]
         url_endpoint = naas_endpoint + "/Switches"
         payload = json.dumps({"ManagementIP":"10.10.10.1"})

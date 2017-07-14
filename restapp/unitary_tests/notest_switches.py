@@ -1,3 +1,5 @@
+__author__ = "Laurent DURAND"
+
 from __future__ import absolute_import
 from flask_testing import LiveServerTestCase
 import unittest2 as unittest
