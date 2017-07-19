@@ -1,4 +1,6 @@
-author__ = "Laurent DURAND"
+__author__ = "Laurent DURAND"
+
+# Currently unused
 
 from flask_restplus import Resource
 from flask_restplus import reqparse
