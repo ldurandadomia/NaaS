@@ -1,13 +1,12 @@
-__author__ = "Laurent DURAND"
-
 from __future__ import absolute_import
 from flask_testing import TestCase
 import unittest2 as unittest
 from config import TEST_DATABASE_URI
-from restapp.switches_dao import SwitchesDao
-from restapp.exceptions import IntegrityConstraintViolation, MissingAttribute, BadAttribute, NotFound
-from restapp import app as rest_app, db
+from restapp.dao.switches_dao import SwitchesDao
+from restapp.exceptions.exceptions import IntegrityConstraintViolation, MissingAttribute, BadAttribute, NotFound
+from restapp.app import app as rest_app, db
 
+__author__ = "Laurent DURAND"
 
 SwDao = SwitchesDao(db)
 

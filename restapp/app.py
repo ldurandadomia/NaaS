@@ -3,7 +3,7 @@ __author__ = "Laurent DURAND"
 from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_restplus import Api
-import logging.config
+import logging.config, logging
 from config import VERSION
 
 
@@ -29,7 +29,7 @@ db = SQLAlchemy(app)
 db.init_app(app)
 
 # Register our 3 blueprints (config, running and operation)
-config_blueprint = Blueprint('Network node configuration API', __name__, url_prefix='/naas/config/v{}'.format(VERSION))
+config_blueprint = Blueprint('config_apis', __name__, url_prefix='/naas/config/v{}'.format(VERSION))
 running_blueprint = Blueprint('running_apis', __name__, url_prefix='/naas/running/v{}'.format(VERSION))
 operation_blueprint = Blueprint('operation_apis', __name__, url_prefix='/naas/operation/v{}'.format(VERSION))
 
@@ -49,5 +49,8 @@ api.add_namespace(ns_switches)
 # Import all exceptions
 from restapp.exceptions import errorhandlers
 
-# Import all view
+# Import all views
 from restapp.endpoints import switches_view
+from restapp.endpoints import switch_view
+from restapp.endpoints import ports_view
+from restapp.endpoints import port_view

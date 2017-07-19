@@ -10,6 +10,7 @@ SQL Alchemy ORM is used to manage Database access.
 ```python
 todo  
 ```
+
 ## Installation
 1. First clone this repository.
 ```bash
@@ -31,6 +32,11 @@ $ pip install -r requirements.txt
 4. Then, run the app.
 ```bash
 $ python manage.py runserver
+```
+
+## Run Unitary tests
+```bash
+$ python manage.py unitary_tests
 ```
 
 ## API Reference

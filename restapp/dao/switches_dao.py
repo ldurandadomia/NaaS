@@ -21,7 +21,6 @@ class SwitchesDao(Dao):
             sw_name = data["Name"]
             sw_mgnt_ip = data["ManagementIP"]
         except KeyError as missing_attribute:
-            from exceptions import MissingAttribute
             Message = "Attribute {} has not been provided for Switch creation into inventory".format(missing_attribute.message)
             raise MissingAttribute(Message)
 
@@ -30,7 +29,6 @@ class SwitchesDao(Dao):
             self.db.session.add(un_switch)
             self.db.session.commit()
         except Exception as e:
-            from exceptions import IntegrityConstraintViolation
             Message = 'Switch Name: {} with Management IP address: {} is already defined into inventory.'.format(sw_name, sw_mgnt_ip)
             raise IntegrityConstraintViolation(Message)
         return un_switch
@@ -39,7 +37,7 @@ class SwitchesDao(Dao):
     def list(self, Filters=None):
         """ List All Switches Elements in Database
         parameters : Filters = optional attributes values used as a filter for the query"""
-        if Filters == None:
+        if (Filters == None) or (len(Filters) == 0):
             allSwitches = models.Switches.query.all()
         else:
             # Enforce query filter
@@ -47,7 +45,8 @@ class SwitchesDao(Dao):
             try:
                 for ParamName, ParamValue in Filters.items():
                     dbQuery = dbQuery.filter(getattr(models.Switches, ParamName) == ParamValue)
-                    allSwitches = dbQuery.all()
+                allSwitches = dbQuery.all()
+
             except AttributeError as UnknownAttribute:
                 Message = UnknownAttribute.message
                 Position = Message.index('has no attribute') + len('has no attribute')
@@ -89,6 +88,13 @@ class SwitchesDao(Dao):
 
     def delete(self, uuid):
         """Delete a given switch using its UUID"""
+        # we are deleting all ports records
+        dbQuery = models.Ports.query
+        dbQuery = dbQuery.filter(getattr(models.Ports, "Switch_Id") == uuid)
+        AllPorts = dbQuery.all()
+        for Element in AllPorts:
+            self.db.session.delete(Element)
+
         un_switch = models.Switches.query.get_or_404(uuid)
         self.db.session.delete(un_switch)
         self.db.session.commit()

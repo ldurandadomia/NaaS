@@ -5,12 +5,12 @@ from sqlalchemy.orm import synonym
 
 
 class Switches(db.Model):
-    """attributs d'un switch de l'infrastructure"""
+    """infrastructure switch attributes"""
     __tablename_ = 'Switches'
     __table_args__ = (db.UniqueConstraint('Name', 'ManagementIP', name='switch_unicity'),)
     Id = db.Column(db.Integer, primary_key=True)
-    Name = db.Column(db.String(64), index=True, unique=False)
-    ManagementIP = db.Column(db.String(20), index=True, unique=False)
+    Name = db.Column(db.String(64), index=True, unique=False, nullable=False)
+    ManagementIP = db.Column(db.String(20), index=True, unique=False, nullable=False)
     Ports = db.relationship('Ports', backref='SwitchNode', lazy='dynamic')
 
     Switch_Id = synonym("Id")
@@ -28,7 +28,9 @@ class Switches(db.Model):
 
 
 class Ports(db.Model):
-    """attributs des ports d'un switch de l'infrastructure"""
+    """infrastructure port switch attributes"""
+    __tablename_ = 'Ports'
+    __table_args__ = (db.UniqueConstraint('Name', 'Switch_Id', name='portswitch_unicity'),)
     Id = db.Column(db.Integer, primary_key=True)
     Switch_Id = db.Column(db.Integer, db.ForeignKey('switches.Id'))
     Name = db.Column(db.String(64), index=True, unique=False)
