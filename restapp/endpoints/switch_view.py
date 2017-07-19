@@ -5,6 +5,7 @@ from flask_restplus import Resource
 from restapp.app import db, ns_switches
 from restapp.dao.switches_dao import SwitchesDao
 from flask import jsonify, make_response
+from flask import request
 
 
 SwDao = SwitchesDao(db)
@@ -27,3 +28,12 @@ class OneSwitch(Resource):
         SwId = SwDao.delete(Id)
         TextMessage = "Switch UUID {} has been successfully deleted.".format(SwId)
         return make_response(jsonify({"Message":TextMessage}), 204)
+
+
+    @ns_switches.expect(SwitchesSerializers.Put, envelope='Switch', code=200, validate=True)
+    @ns_switches.marshal_with(SwitchesSerializers.Get, envelope='Switch')
+    @ns_switches.response(200, 'Successfully Updated')
+    def put(self, Id):
+        """Update a given switch in the NaaS inventory"""
+        data = request.json
+        return SwDao.update(Id, data), 200

@@ -25,3 +25,11 @@ class PortsSerializers:
         'Switch_Id': fields.String(description='Switch unique identifier'),
         'uri': fields.Url('config_apis.Port', absolute=True, scheme='http'),
     })
+
+    # Ports PUT Serializer
+    Put = api.model('PortsPut', {
+        'Name': fields.String(description='Port Name'),
+        'Speed': fields.String(description='Port Speed (auto/10/100/1G/10G/100G)'),
+        'Duplex': fields.String(description='Port Duplex (auto/half/full)'),
+        'Status': fields.String(description='Port administrative status (enable/disable)'),
+    })

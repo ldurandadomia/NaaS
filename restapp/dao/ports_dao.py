@@ -77,9 +77,11 @@ class PortsDao(Dao):
         return un_port
 
 
-    def update(self, uuid, data):
+    def update(self, uuid, Switch_Id, data):
         """Update a port into database using data attributes provided"""
         un_port = models.Ports.query.get_or_404(uuid)
+        if (un_port.Switch_Id != Switch_Id ):
+            raise NotFound(description="Port not found on given switch", response=404)
 
         updatable_fields = ["Name", "Speed", "Duplex", "Status"]
 

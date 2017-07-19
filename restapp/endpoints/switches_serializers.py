@@ -22,5 +22,10 @@ class SwitchesSerializers:
         'uri': fields.Url('config_apis.Switch', absolute=True, scheme='http'),
         # When using blueprint, endpoint must be prefixed by blueprint name
         'Ports': fields.List(fields.Nested(PortSerializers.Get))
+    })
 
+    # Switches PUT Serializer
+    Put = api.model('SwitchesPut', {
+        'Name': fields.String(description='Node Name'),
+        'ManagementIP': fields.String(description='Management IP address'),
     })
