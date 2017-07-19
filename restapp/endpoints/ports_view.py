@@ -8,10 +8,11 @@ from flask import request
 
 MyPortsDao = PortsDao(db)
 
+@ns_switches.param('Switch_Id', 'Switch Unique Identifier')
 @ns_switches.route('/<int:Switch_Id>/Ports', endpoint="Ports")
 @ns_switches.response(404, 'No port found into inventory')
 class SetOfPorts(Resource):
-
+    @ns_switches.param('Switch_Id', 'Switch Unique Identifier')
     @ns_switches.response(200, 'Success')
     @ns_switches.marshal_list_with(PortsSerializers.Get, envelope='Ports')
     def get(self, Switch_Id):

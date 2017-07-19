@@ -10,6 +10,7 @@ from flask import request
 MyPortsDao = PortsDao(db)
 
 @ns_switches.param('Id', 'Port Unique Identifier')
+@ns_switches.param('Switch_Id', 'Switch Unique Identifier')
 @ns_switches.route('/<int:Switch_Id>/Ports/<int:Id>', endpoint='Port')
 @ns_switches.response(404, 'No port found into inventory')
 class OnePort(Resource):
