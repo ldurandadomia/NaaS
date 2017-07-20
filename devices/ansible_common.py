@@ -1,4 +1,4 @@
-author__ = "Laurent DURAND"
+__author__ = "Laurent DURAND"
 
 from ansible.plugins.callback import CallbackBase
 
