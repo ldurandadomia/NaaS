@@ -21,11 +21,18 @@ class AnsiblePlay(Resource):
 
         try:
             playbook_name = data["Name"]
+            playbook_name = './playbook/{}'.format(playbook_name)
 
         except KeyError as missing_attribute:
             Message = "Attribute {} has not been provided for ansible playbook execution".format(missing_attribute.message)
             raise MissingAttribute(Message)
 
-        MyPlayBook = AnsiblePlaybook(playbook_name)
+        if "Inventory" in data.keys():
+            inventory = data["Inventory"]
+            inventory = './playbook/{}'.format(inventory)
+        else:
+            inventory=None
+
+        MyPlayBook = AnsiblePlaybook(playbook_name,inventory_filename=inventory)
         Result = MyPlayBook.run()
         return make_response(jsonify({'Playbook Results': [Task for Task in Result.results]}), 200)

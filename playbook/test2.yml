@@ -1,0 +1,14 @@
+---
+- name: Hello Ansible - quick start
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: list some files 
+      shell: ls "{{ filename }}" 
+      register: results 
+
+    - name: display results
+      debug:
+        var: results

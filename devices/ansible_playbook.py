@@ -14,11 +14,23 @@ import os
 
 class AnsiblePlaybook:
     """This Class is used to manage Ansible."""
-    def __init__(self, playbook_name):
+    def __init__(self, playbook_filename, inventory_filename=None, extra_vars_dict=None):
         """AnsiblePlaybook constructor
         playbook_name : playbook = playbook to be run
         """
-        self.playbook = playbook_name
+        self.playbook = playbook_filename
+
+        if inventory_filename == None:
+            self.inventory = ' '
+        else:
+            self.inventory = inventory_filename
+
+        if extra_vars_dict == None:
+            self.extra_vars = dict()
+        else:
+            self.extra_vars = extra_vars_dict
+
+
 
     def run(self):
         """run an Ansible Playbook"""
@@ -35,17 +47,18 @@ class AnsiblePlaybook:
                           become_method=None, become_user=None, verbosity=None, check=False)
 
         variable_manager = VariableManager()
-        variable_manager.extra_vars = {'ansible_user': 'ansible', 'ansible_port': '5986', 'ansible_connection': 'local',
-                                       'ansible_password': 'pass'}  # Here are the variables used in the playbook
+        #variable_manager.extra_vars = {'ansible_user': 'ansible', 'ansible_port': '5986', 'ansible_connection': 'local',
+        #                               'ansible_password': 'pass'}  # Here are the variables used in the playbook
+        variable_manager.extra_vars = self.extra_vars
         loader = DataLoader()
-        inventory = Inventory(loader=loader, variable_manager=variable_manager, host_list='fullpath/to/hosts')
+        inventory = Inventory(loader=loader, variable_manager=variable_manager, host_list=self.inventory)
 
         passwords = {}
 
         # stdout message processing
         results_callback = ResultCallback()
 
-        playbook_path = './playbook/{}'.format(self.playbook)
+        playbook_path = self.playbook
         if not os.path.exists(playbook_path):
             Message = "Playbook {} has not been found".format(playbook_path)
             raise NotFound(Message)
